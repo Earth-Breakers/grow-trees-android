@@ -1,0 +1,18 @@
+# PR에서 ktLint 검사
+name: reviewdog
+on: [pull_request]
+jobs:
+  ktlint:
+    name: Check Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@main
+
+      - name: ktlint
+        uses: ScaCap/action-ktlint@v1.8.1
+        with:
+          github_token: ${{ secrets.SECRET_GITHUB_TOKEN }}
+          reporter: github-pr-check
+          level: warning
