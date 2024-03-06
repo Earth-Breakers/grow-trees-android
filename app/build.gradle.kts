@@ -69,7 +69,6 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 }
 
-
 ktlint {
     android = true
     debug = true
