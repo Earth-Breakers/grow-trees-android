@@ -1,4 +1,8 @@
 root = true
 
+[*]
+end_of_line = lf
+insert_final_newline = true
+
 [*.kt]
 ktlint_function_naming_ignore_when_annotated_with = Composable
