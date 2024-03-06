@@ -4,3 +4,4 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
     alias(libs.plugins.ktlint) apply false
 }
+
