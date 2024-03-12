@@ -2,6 +2,30 @@ package univ.earthbreaker.namu.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
+data class Colors(
+    val green1: Color = Green1,
+    val green2: Color = Green2,
+    val green3: Color = Green3,
+
+    val blue1: Color = Blue1,
+    val blue2: Color = Blue2,
+
+    val white: Color = White,
+    val gray1: Color = Gray1,
+    val gray2: Color = Gray2,
+    val gray3: Color = Gray3,
+    val gray4: Color = Gray4,
+    val gray5: Color = Gray5,
+    val gray6: Color = Gray6,
+    val gray7: Color = Gray7,
+    val gray8: Color = Gray8,
+    val black: Color = Black,
+
+    val bgBlack: Color = BgBlack,
+    val bg2Black: Color = Bg2Black,
+    val bgWhite: Color = BgWhite,
+)
+
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
 val Pink80 = Color(0xFFEFB8C8)
