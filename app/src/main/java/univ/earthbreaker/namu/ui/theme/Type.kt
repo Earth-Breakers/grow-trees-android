@@ -45,6 +45,7 @@ data class GTTypography(
 
     val bodyMedium16: TextStyle = TextStyle(
         fontFamily = fonts,
+
         fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
         lineHeight = 26.sp
