@@ -11,8 +11,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import univ.earthbreaker.namu.R
 import univ.earthbreaker.namu.feature.home.component.EnergyCard
 import univ.earthbreaker.namu.feature.home.component.OpenDialogCard
 import univ.earthbreaker.namu.feature.home.component.WeeklyTopRankerProfileCard
@@ -35,11 +37,11 @@ fun HomeScreen() {
             Column {
                 EnergyCard()
                 Spacer(Modifier.height(5.dp))
-                OpenDialogCard(text = "도감") { /* TODO */ }
+                OpenDialogCard(text = stringResource(R.string.book)) { /* TODO */ }
                 Spacer(Modifier.height(5.dp))
-                OpenDialogCard(text = "MY") { /* TODO */ }
+                OpenDialogCard(text = stringResource(R.string.my)) { /* TODO */ }
                 Spacer(Modifier.height(5.dp))
-                OpenDialogCard(text = "미션") { /* TODO */ }
+                OpenDialogCard(text = stringResource(R.string.mission)) { /* TODO */ }
             }
         }
     }

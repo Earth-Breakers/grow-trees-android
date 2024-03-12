@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Grow Tree</string>
+    <string name="tree_king_of_the_week">금주의 나무왕</string>
+    <string name="book">도감</string>
+    <string name="my">MY</string>
+    <string name="mission">미션</string>
 </resources>

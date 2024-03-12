@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import univ.earthbreaker.namu.R
@@ -39,7 +40,7 @@ fun WeeklyTopRankerProfileCard(modifier: Modifier = Modifier) {
             )
             Text(
                 modifier = Modifier.padding(start = 4.dp, bottom = 10.dp),
-                text = "금주의 나무왕",
+                text = stringResource(R.string.tree_king_of_the_week),
                 style = GTTheme.typography.detailMedium10,
                 color = GTTheme.colors.blue2
             )
