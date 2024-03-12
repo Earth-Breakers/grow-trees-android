@@ -25,13 +25,13 @@ fun HomeScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = GTTheme.colors.bgBlack)
+            .background(color = GTTheme.colors.bgBlack),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 20.dp, end = 20.dp, top = 30.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             WeeklyTopRankerProfileCard()
             Column {

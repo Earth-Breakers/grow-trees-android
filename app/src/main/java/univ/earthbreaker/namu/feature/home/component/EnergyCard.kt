@@ -43,7 +43,7 @@ fun EnergyCard(energyCount: Int = 0) {
             text = energyCount.toString(),
             style = GTTheme.typography.detailMedium14,
             color = GTTheme.colors.white,
-            textAlign = TextAlign.End
+            textAlign = TextAlign.End,
         )
     }
 }

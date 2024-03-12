@@ -22,13 +22,15 @@ import univ.earthbreaker.namu.ui.theme.GTTheme
 fun WeeklyTopRankerProfileCard(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.background(
-            color = GTTheme.colors.bgBlack, shape = RoundedCornerShape(15.dp)
-        ), horizontalAlignment = Alignment.CenterHorizontally
+            color = GTTheme.colors.bgBlack,
+            shape = RoundedCornerShape(15.dp),
+        ),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
             modifier = Modifier.padding(top = 12.dp, start = 20.dp, end = 20.dp, bottom = 5.dp),
             painter = painterResource(id = R.drawable.img_top_ranker_mock),
-            contentDescription = null
+            contentDescription = null,
         )
         Row(
             modifier = Modifier.padding(horizontal = 9.dp),
@@ -36,13 +38,13 @@ fun WeeklyTopRankerProfileCard(modifier: Modifier = Modifier) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_crown),
                 contentDescription = null,
-                tint = GTTheme.colors.blue1
+                tint = GTTheme.colors.blue1,
             )
             Text(
                 modifier = Modifier.padding(start = 4.dp, bottom = 10.dp),
                 text = stringResource(R.string.tree_king_of_the_week),
                 style = GTTheme.typography.detailMedium10,
-                color = GTTheme.colors.blue2
+                color = GTTheme.colors.blue2,
             )
         }
     }
@@ -53,4 +55,3 @@ fun WeeklyTopRankerProfileCard(modifier: Modifier = Modifier) {
 fun WeeklyTopRankerProfileCardPreview() {
     WeeklyTopRankerProfileCard()
 }
-

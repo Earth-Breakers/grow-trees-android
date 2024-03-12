@@ -21,7 +21,10 @@ import univ.earthbreaker.namu.compose.noRippleClickable
 import univ.earthbreaker.namu.ui.theme.GTTheme
 
 @Composable
-fun OpenDialogCard(text: String, onClick: () -> Unit) {
+fun OpenDialogCard(
+    text: String,
+    onClick: () -> Unit,
+) {
     Row(
         modifier = Modifier
             .width(62.dp)
@@ -43,7 +46,7 @@ fun OpenDialogCard(text: String, onClick: () -> Unit) {
             modifier = Modifier.padding(start = 4.dp, end = 6.dp),
             painter = painterResource(id = R.drawable.ic_right_arrow),
             contentDescription = null,
-            tint = GTTheme.colors.gray2
+            tint = GTTheme.colors.gray2,
         )
     }
 }
