@@ -20,7 +20,7 @@ import univ.earthbreaker.namu.R
 import univ.earthbreaker.namu.ui.theme.GTTheme
 
 @Composable
-fun EnergyCard(energyCount: Int = 0) {
+fun UserEnergyCard(energyCount: Int = 0) {
     Row(
         modifier = Modifier
             .width(62.dp)
@@ -51,5 +51,5 @@ fun EnergyCard(energyCount: Int = 0) {
 @Preview
 @Composable
 fun EnergyCardPreview() {
-    EnergyCard()
+    UserEnergyCard()
 }

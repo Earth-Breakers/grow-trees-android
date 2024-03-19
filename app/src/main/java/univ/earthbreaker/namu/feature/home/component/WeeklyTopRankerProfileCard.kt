@@ -16,15 +16,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import univ.earthbreaker.namu.R
+import univ.earthbreaker.namu.compose.noRippleClickable
 import univ.earthbreaker.namu.ui.theme.GTTheme
 
 @Composable
-fun WeeklyTopRankerProfileCard(modifier: Modifier = Modifier) {
+fun WeeklyTopRankerProfileCard(modifier: Modifier = Modifier, onClick: () -> Unit = {}) {
     Column(
         modifier = modifier.background(
             color = GTTheme.colors.bgBlack,
             shape = RoundedCornerShape(15.dp),
-        ),
+        ).noRippleClickable(onClick = onClick),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(

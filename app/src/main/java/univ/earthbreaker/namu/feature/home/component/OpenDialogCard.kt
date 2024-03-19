@@ -3,9 +3,8 @@ package univ.earthbreaker.namu.feature.home.component
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -15,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import univ.earthbreaker.namu.R
 import univ.earthbreaker.namu.compose.noRippleClickable
@@ -24,11 +24,12 @@ import univ.earthbreaker.namu.ui.theme.GTTheme
 fun OpenDialogCard(
     text: String,
     onClick: () -> Unit,
+    width: Dp = 62.dp,
+    height: Dp = 26.dp,
 ) {
     Row(
         modifier = Modifier
-            .width(62.dp)
-            .height(26.dp)
+            .size(width, height)
             .background(color = GTTheme.colors.bgBlack, shape = RoundedCornerShape(100.dp))
             .noRippleClickable(onClick = onClick),
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -54,5 +55,5 @@ fun OpenDialogCard(
 @Preview
 @Composable
 fun OpenDialogCardPreview() {
-    OpenDialogCard(stringResource(id = R.string.book)) {}
+    OpenDialogCard(stringResource(id = R.string.book), onClick = {})
 }
