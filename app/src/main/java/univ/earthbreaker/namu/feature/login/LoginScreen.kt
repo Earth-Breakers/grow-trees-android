@@ -2,7 +2,6 @@ package univ.earthbreaker.namu.feature.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,6 +16,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import univ.earthbreaker.namu.R
+import univ.earthbreaker.namu.compose.noRippleClickable
 import univ.earthbreaker.namu.ui.theme.GTTheme
 
 @Composable
@@ -34,7 +34,7 @@ fun LoginScreen(onClickLoginButton: () -> Unit = {}) {
             modifier = Modifier
                 .padding(horizontal = 20.dp)
                 .fillMaxWidth()
-                .clickable(onClick = onClickLoginButton),
+                .noRippleClickable(onClick = onClickLoginButton),
             painter = painterResource(id = R.drawable.img_kakao_login),
             contentDescription = null,
         )
