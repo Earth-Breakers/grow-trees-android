@@ -2,6 +2,9 @@
     <string name="app_name">Grow Tree</string>
     <string name="tree_king_of_the_week">금주의 나무왕</string>
     <string name="book">도감</string>
-    <string name="my">MY</string>
     <string name="mission">미션</string>
+    <string name="my">MY</string>
+    <string name="notification">알림</string>
+    <string name="adding_friends">친구 추가</string>
+    <string name="guestbook">방명록</string>
 </resources>
