@@ -8,7 +8,7 @@ class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            HomeScreen()
+            HomeScreen(level = 1, exp = 0.7f)
         }
     }
 }
