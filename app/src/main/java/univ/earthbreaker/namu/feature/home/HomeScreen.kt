@@ -1,7 +1,10 @@
 package univ.earthbreaker.namu.feature.home
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -13,25 +16,69 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import univ.earthbreaker.namu.R
-import univ.earthbreaker.namu.feature.home.component.EnergyCard
+import univ.earthbreaker.namu.compose.CommonDialogWithXIcon
 import univ.earthbreaker.namu.feature.home.component.OpenDialogCard
+import univ.earthbreaker.namu.feature.home.component.TreeEnergyCard
+import univ.earthbreaker.namu.feature.home.component.UserEnergyCard
 import univ.earthbreaker.namu.feature.home.component.WeeklyTopRankerProfileCard
 import univ.earthbreaker.namu.ui.theme.GTTheme
 
 @Composable
-fun HomeScreen(level: Int, exp: Float) {
+fun HomeScreen(level: Int, exp: Float, energyCount: Int, currentEnergy: Int, requiredEnergy: Int) {
+    var doesDialogExist by rememberSaveable {
+        mutableStateOf(false)
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = GTTheme.colors.bgBlack),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceBetween,
     ) {
+        HomeTopCard(level, exp, energyCount, onProfileClick = { doesDialogExist = true })
+        Image(
+            painter = painterResource(id = R.drawable.img_mock_character),
+            contentDescription = null,
+        )
+        HomeBottomCard(currentEnergy = currentEnergy, requiredEnergy = requiredEnergy)
+    }
+    if (doesDialogExist) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+        ) {
+            CommonDialogWithXIcon(
+                content = {
+                    Column {
+                        repeat(15) {
+                            Text(
+                                text = "Hello World!",
+                                style = GTTheme.typography.titleSemiBold20,
+                            )
+                        }
+                    }
+                },
+                dismiss = { doesDialogExist = false },
+            )
+        }
+    }
+}
+
+@Composable
+fun HomeTopCard(level: Int, exp: Float, energyCount: Int, onProfileClick: () -> Unit = {}) {
+    Column {
         Row(
             modifier = Modifier.padding(start = 18.dp, end = 18.dp, top = 30.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -60,7 +107,7 @@ fun HomeScreen(level: Int, exp: Float) {
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Column {
-                WeeklyTopRankerProfileCard()
+                WeeklyTopRankerProfileCard(onClick = onProfileClick)
                 Spacer(Modifier.height(7.dp))
                 OpenDialogCard(
                     text = stringResource(R.string.adding_friends),
@@ -71,11 +118,11 @@ fun HomeScreen(level: Int, exp: Float) {
                 OpenDialogCard(
                     text = stringResource(R.string.guestbook),
                     onClick = {},
-                    width = 70.dp,
+                    width = 72.dp,
                 )
             }
             Column {
-                EnergyCard()
+                UserEnergyCard(energyCount = energyCount)
                 Spacer(Modifier.height(7.dp))
                 OpenDialogCard(text = stringResource(R.string.book), onClick = {})
                 Spacer(Modifier.height(7.dp))
@@ -89,8 +136,47 @@ fun HomeScreen(level: Int, exp: Float) {
     }
 }
 
+@Composable
+fun HomeBottomCard(currentEnergy: Int, requiredEnergy: Int) {
+    val isReady = currentEnergy == requiredEnergy
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        TreeEnergyCard(currentEnergy, requiredEnergy)
+        Spacer(modifier = Modifier.height(52.dp))
+        Box(
+            modifier = Modifier
+                .padding(horizontal = 30.dp)
+                .fillMaxWidth()
+                .background(
+                    color = if (isReady) GTTheme.colors.green1 else GTTheme.colors.gray3,
+                    shape = RoundedCornerShape(5.dp),
+                )
+                .clickable(enabled = isReady) { },
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                modifier = Modifier.padding(vertical = 15.dp),
+                text = if (isReady) "다음 단계로 성장하기" else "에너지가 2개 모자라요 !",
+                style = GTTheme.typography.titleSemiBold18,
+            )
+        }
+        Spacer(modifier = Modifier.height(56.dp))
+    }
+}
+
 @Preview
 @Composable
 fun HomeScreenPreview() {
-    HomeScreen(level = 1, exp = 0.7f)
+    HomeScreen(level = 1, exp = 0.7f, energyCount = 1, currentEnergy = 1, requiredEnergy = 3)
+}
+
+@Preview
+@Composable
+fun HomeTopCardPreview() {
+    HomeTopCard(level = 1, exp = 0.7f, energyCount = 1)
+}
+
+@Preview
+@Composable
+fun HomeBottomCardPreview() {
+    HomeBottomCard(currentEnergy = 1, requiredEnergy = 3)
 }
