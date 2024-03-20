@@ -1,6 +1,7 @@
 package univ.earthbreaker.namu.compose
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,21 +21,33 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import univ.earthbreaker.namu.R
 import univ.earthbreaker.namu.ui.theme.GTTheme
 
 @Composable
 fun CommonDialogWithXIcon(
-    modifier: Modifier = Modifier,
+    onDismissRequest: () -> Unit,
+    properties: DialogProperties = DialogProperties(),
     content: @Composable () -> Unit,
-    dismiss: () -> Unit,
 ) {
-    Dialog(onDismissRequest = (dismiss)) {
+    Dialog(
+        onDismissRequest = onDismissRequest,
+        properties = properties.let {
+            DialogProperties(
+                dismissOnBackPress = it.dismissOnBackPress,
+                dismissOnClickOutside = it.dismissOnClickOutside,
+                securePolicy = it.securePolicy,
+                usePlatformDefaultWidth = false,
+            )
+        },
+    ) {
         Column(
-            modifier = modifier
-                .background(color = Color.Transparent)
-                .fillMaxWidth(0.89f),
+            modifier = Modifier
+                .fillMaxWidth(0.88f)
+                .background(color = Color.Transparent),
             horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center,
         ) {
             Box(
                 modifier = Modifier
@@ -52,7 +65,7 @@ fun CommonDialogWithXIcon(
                     .size(size = 64.dp)
                     .clip(shape = RoundedCornerShape(100.dp))
                     .background(GTTheme.colors.white)
-                    .noRippleClickable(onClick = dismiss),
+                    .noRippleClickable(onClick = onDismissRequest),
                 contentAlignment = Alignment.Center,
             ) {
                 Icon(
@@ -79,7 +92,7 @@ fun CommonDialogWithXIconPreview() {
                     }
                 }
             },
-            dismiss = {},
+            onDismissRequest = {},
         )
     }
 }

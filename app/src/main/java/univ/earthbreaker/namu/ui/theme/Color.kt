@@ -20,6 +20,7 @@ data class Colors(
     val black: Color = Black,
     val bgBlack: Color = BgBlack,
     val bg2Black: Color = Bg2Black,
+    val bg3Black: Color = Bg3Black,
     val bgWhite: Color = BgWhite,
 )
 
@@ -51,4 +52,5 @@ val Black = Color(0xFF1C1C1F)
 
 val BgBlack = Color(0x991C1C1F)
 val Bg2Black = Color(0x661C1C1F)
+val Bg3Black = Color(0x8E8C8C96)
 val BgWhite = Color(0x4DFFFFFF)

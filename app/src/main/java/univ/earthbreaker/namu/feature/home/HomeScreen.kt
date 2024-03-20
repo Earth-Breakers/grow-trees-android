@@ -28,7 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import univ.earthbreaker.namu.R
-import univ.earthbreaker.namu.compose.CommonDialogWithXIcon
+import univ.earthbreaker.namu.feature.book.BookDialog
 import univ.earthbreaker.namu.feature.home.component.OpenDialogCard
 import univ.earthbreaker.namu.feature.home.component.TreeEnergyCard
 import univ.earthbreaker.namu.feature.home.component.UserEnergyCard
@@ -37,7 +37,7 @@ import univ.earthbreaker.namu.ui.theme.GTTheme
 
 @Composable
 fun HomeScreen(level: Int, exp: Float, energyCount: Int, currentEnergy: Int, requiredEnergy: Int) {
-    var doesDialogExist by rememberSaveable {
+    var doesBookDialogExist by rememberSaveable {
         mutableStateOf(false)
     }
 
@@ -48,36 +48,33 @@ fun HomeScreen(level: Int, exp: Float, energyCount: Int, currentEnergy: Int, req
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween,
     ) {
-        HomeTopCard(level, exp, energyCount, onProfileClick = { doesDialogExist = true })
+        HomeTopCard(
+            level,
+            exp,
+            energyCount,
+            onBookClick = { doesBookDialogExist = true },
+        )
         Image(
             painter = painterResource(id = R.drawable.img_mock_character),
             contentDescription = null,
         )
         HomeBottomCard(currentEnergy = currentEnergy, requiredEnergy = requiredEnergy)
     }
-    if (doesDialogExist) {
-        Column(
-            modifier = Modifier.fillMaxSize(),
-        ) {
-            CommonDialogWithXIcon(
-                content = {
-                    Column {
-                        repeat(15) {
-                            Text(
-                                text = "Hello World!",
-                                style = GTTheme.typography.titleSemiBold20,
-                            )
-                        }
-                    }
-                },
-                dismiss = { doesDialogExist = false },
-            )
-        }
+
+    if (doesBookDialogExist) {
+        BookDialog(
+            onDismissRequest = { doesBookDialogExist = false },
+        )
     }
 }
 
 @Composable
-fun HomeTopCard(level: Int, exp: Float, energyCount: Int, onProfileClick: () -> Unit = {}) {
+fun HomeTopCard(
+    level: Int,
+    exp: Float,
+    energyCount: Int,
+    onBookClick: () -> Unit = {},
+) {
     Column {
         Row(
             modifier = Modifier.padding(start = 18.dp, end = 18.dp, top = 30.dp),
@@ -107,7 +104,7 @@ fun HomeTopCard(level: Int, exp: Float, energyCount: Int, onProfileClick: () -> 
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             Column {
-                WeeklyTopRankerProfileCard(onClick = onProfileClick)
+                WeeklyTopRankerProfileCard()
                 Spacer(Modifier.height(7.dp))
                 OpenDialogCard(
                     text = stringResource(R.string.adding_friends),
@@ -124,7 +121,10 @@ fun HomeTopCard(level: Int, exp: Float, energyCount: Int, onProfileClick: () -> 
             Column {
                 UserEnergyCard(energyCount = energyCount)
                 Spacer(Modifier.height(7.dp))
-                OpenDialogCard(text = stringResource(R.string.book), onClick = {})
+                OpenDialogCard(
+                    text = stringResource(R.string.book),
+                    onClick = onBookClick,
+                )
                 Spacer(Modifier.height(7.dp))
                 OpenDialogCard(text = stringResource(R.string.mission), onClick = {})
                 Spacer(Modifier.height(7.dp))
